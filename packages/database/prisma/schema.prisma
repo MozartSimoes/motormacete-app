@@ -1,0 +1,413 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../apps/web/lib/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── Vehicle catalogue ────────────────────────────────────────────────────────
+
+model VehicleType {
+  id     String  @id @default(cuid())
+  slug   String  @unique
+  label  String
+  brands Brand[]
+}
+
+model Brand {
+  id            String         @id @default(cuid())
+  name          String
+  vehicleTypeId String
+  vehicleType   VehicleType    @relation(fields: [vehicleTypeId], references: [id])
+  models        VehicleModel[]
+
+  @@unique([name, vehicleTypeId])
+  @@index([vehicleTypeId])
+}
+
+model VehicleModel {
+  id      String  @id @default(cuid())
+  name    String
+  brandId String
+  brand   Brand   @relation(fields: [brandId], references: [id])
+
+  @@unique([name, brandId])
+  @@index([brandId])
+}
+
+model Tip {
+  id        String    @id @default(cuid())
+  modelName String?
+  category  Category
+  severity  Severity
+  title     String
+  body      String
+  yearFrom  Int?
+  yearTo    Int?
+  order     Int       @default(0)
+
+  @@index([modelName, category])
+  @@index([category, modelName])
+}
+
+// ─── Users & auth ─────────────────────────────────────────────────────────────
+
+model User {
+  id                   String         @id @default(cuid())
+  email                String         @unique
+  name                 String
+  phone                String?
+  passwordHash         String
+  type                 UserType       @default(DRIVER)
+  emailVerified        Boolean        @default(false)
+  plan                 UserPlan       @default(FREE)
+  planExpiresAt        DateTime?
+  trialEndsAt          DateTime?
+  isAdmin              Boolean        @default(false)
+  stripeCustomerId     String?        @unique
+  stripeSubscriptionId String?        @unique
+  expoPushToken        String?
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+  workshop             Workshop?
+  otpCodes             OtpCode[]
+  vehicles             UserVehicle[]
+  tripChecklists       TripChecklist[]
+}
+
+model UserVehicle {
+  id          String           @id @default(cuid())
+  userId      String
+  user        User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nickname    String?
+  vehicleType String           @default("carro")
+  brand       String
+  model       String
+  year        Int
+  fuelType    String?
+  color       String?
+  plate           String?
+  currentKm       Int?
+  notes           String?
+  ipvaMonth            Int?
+  licensingMonth       Int?
+  ipvaAlertSentAt      DateTime?
+  licensingAlertSentAt DateTime?
+  createdAt            DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  logs            MaintenanceLog[]
+  fuelLogs        FuelLog[]
+  tripChecklists  TripChecklist[]
+
+  @@index([userId])
+}
+
+model FuelLog {
+  id            String      @id @default(cuid())
+  vehicleId     String
+  vehicle       UserVehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  date          DateTime
+  odometer      Int
+  liters        Float
+  pricePerLiter Float?
+  totalCost     Float?
+  fuelType      String?
+  fullTank      Boolean     @default(true)
+  station       String?
+  notes         String?
+  createdAt     DateTime    @default(now())
+
+  @@index([vehicleId])
+  @@index([vehicleId, date])
+}
+
+model MaintenanceLog {
+  id           String      @id @default(cuid())
+  vehicleId    String
+  vehicle      UserVehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  date         DateTime
+  km           Int?
+  category     String
+  description  String
+  cost         Float?
+  workshop     String?
+  notes        String?
+  nextKm       Int?
+  nextDate     DateTime?
+  alertSentAt  DateTime?
+  createdAt    DateTime    @default(now())
+
+  @@index([vehicleId])
+  @@index([vehicleId, date])
+  @@index([nextDate, alertSentAt])
+}
+
+model Workshop {
+  id            String         @id @default(cuid())
+  userId        String         @unique
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name          String
+  phone         String?
+  description   String?
+  specialties   String[]
+  cep           String
+  street        String
+  number        String
+  complement    String?
+  neighborhood  String
+  city          String
+  state         String
+  active        Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  serviceOrders ServiceOrder[]
+
+  @@index([city, neighborhood])
+  @@index([active])
+}
+
+model ServiceOrder {
+  id           String             @id @default(cuid())
+  workshopId   String
+  workshop     Workshop           @relation(fields: [workshopId], references: [id], onDelete: Cascade)
+  number       Int
+  clientName   String
+  clientPhone  String?
+  clientEmail  String?
+  plate        String?
+  vehicleBrand String
+  vehicleModel String
+  vehicleYear  Int?
+  vehicleKm    Int?
+  vehicleFuel  String?
+  status       OSStatus           @default(OPEN)
+  diagnosis    String?
+  notes                String?
+  items                ServiceOrderItem[]
+  total                Float              @default(0)
+  openedAt             DateTime           @default(now())
+  closedAt             DateTime?
+  nextMaintenanceDate  DateTime?
+  clientAlertSentAt    DateTime?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  @@unique([workshopId, number])
+  @@index([workshopId])
+  @@index([workshopId, status])
+  @@index([workshopId, createdAt])
+}
+
+model ServiceOrderItem {
+  id          String       @id @default(cuid())
+  orderId     String
+  order       ServiceOrder @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  type        ItemType     @default(LABOR)
+  description String
+  quantity    Float        @default(1)
+  unitPrice   Float
+  total       Float
+
+  @@index([orderId])
+}
+
+model OtpCode {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code      String
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model MaintenanceItem {
+  id             String        @id @default(cuid())
+  modelName      String?
+  yearFrom       Int?
+  yearTo         Int?
+  component      String
+  intervalKm     Int?
+  intervalMonths Int?
+  notes          String?
+  priority       MaintPriority @default(MEDIUM)
+  order          Int           @default(0)
+
+  @@index([modelName])
+}
+
+// ─── Tire Pressure ───────────────────────────────────────────────────────────
+
+model TirePressure {
+  id           String  @id @default(cuid())
+  modelName    String?
+  yearFrom     Int?
+  yearTo       Int?
+  tireSize     String
+  frontPsi     Int
+  rearPsi      Int
+  frontPsiLoad Int?
+  rearPsiLoad  Int?
+  sparePsi     Int?
+  notes        String?
+  order        Int     @default(0)
+
+  @@index([modelName])
+}
+
+// ─── Recall ──────────────────────────────────────────────────────────────────
+
+model RecallCampaign {
+  id            String       @id @default(cuid())
+  number        String       @unique
+  brand         String
+  models        String[]
+  vehicleType   String       @default("carro")
+  yearFrom      Int
+  yearTo        Int
+  title         String
+  defect        String
+  risk          String
+  remedy        String
+  affectedUnits Int?
+  status        RecallStatus @default(OPEN)
+  chassisRange  String?
+  officialUrl   String?
+  publishedAt   DateTime
+
+  @@index([brand])
+  @@index([vehicleType])
+  @@index([status])
+}
+
+enum RecallStatus {
+  OPEN
+  CLOSED
+  PARTIAL
+}
+
+// ─── Trip Checklist ──────────────────────────────────────────────────────────
+
+model TripChecklist {
+  id            String    @id @default(cuid())
+  userId        String?
+  vehicleId     String?
+  vehicleType   String    @default("moto")
+  title         String
+  shareToken    String?   @unique
+  departureAt   DateTime?
+  returnAt      DateTime?
+  parentId      String?
+  memberName    String?
+  memberVehicle String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user    User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vehicle UserVehicle?    @relation(fields: [vehicleId], references: [id], onDelete: SetNull)
+  parent  TripChecklist?  @relation("GroupMembers", fields: [parentId], references: [id], onDelete: Cascade)
+  members TripChecklist[] @relation("GroupMembers")
+  items   TripChecklistItem[]
+
+  @@index([userId])
+  @@index([parentId])
+}
+
+model TripChecklistItem {
+  id          String        @id @default(cuid())
+  checklistId String
+  checklist   TripChecklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
+  category    String
+  label       String
+  checked     Boolean       @default(false)
+  order       Int           @default(0)
+
+  @@index([checklistId])
+}
+
+// ─── Newsletter ──────────────────────────────────────────────────────────────
+
+model NewsletterSubscription {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  topics    String[] @default([])
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  @@index([active])
+}
+
+// ─── Analytics ───────────────────────────────────────────────────────────────
+
+model PageView {
+  id        String   @id @default(cuid())
+  page      String   @default("/")
+  sessionId String?
+  userId    String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([page, createdAt])
+}
+
+// Estado do alerta de consumo da Neon (singleton) — guarda o maior limite de
+// transferência de dados já avisado no período de faturamento atual, pra não
+// reenviar o mesmo alerta a cada execução do cron.
+model NeonUsageAlert {
+  id                 String   @id @default(cuid())
+  periodStart        DateTime
+  lastThresholdBytes BigInt
+  updatedAt          DateTime @updatedAt
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum Category {
+  MACETES
+  PROBLEMAS
+  MANUTENCAO
+}
+
+enum Severity {
+  OK
+  WARN
+  DANGER
+}
+
+enum UserType {
+  DRIVER
+  MECHANIC
+}
+
+enum UserPlan {
+  FREE
+  DRIVER_PRO
+  MECHANIC_PRO
+}
+
+enum MaintPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum OSStatus {
+  OPEN
+  IN_PROGRESS
+  WAITING_PARTS
+  DONE
+  CLOSED
+  CANCELLED
+}
+
+enum ItemType {
+  LABOR
+  PART
+  OTHER
+}

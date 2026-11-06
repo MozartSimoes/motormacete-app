@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #FF6B35;
+  --color-brand-hover: #FF5722;
+  --color-brand-dim: rgba(255, 107, 53, 0.10);
+  --color-brand-border: rgba(255, 107, 53, 0.28);
+  --color-surface: #1c1c22;
+  --color-surface-card: #28282e;
+  --color-surface-input: #222228;
+  --color-surface-elevated: #30303a;
+  --color-border: #3a3a42;
+  --color-border-subtle: #2a2a32;
+  --color-text: #f0ede8;
+  --color-text-muted: #aaa;
+  --color-text-dim: #666;
+  --color-warn: #e0a020;
+  --color-danger: #e03030;
+
+  --font-display: "Bebas Neue", sans-serif;
+  --font-condensed: "Barlow Condensed", sans-serif;
+  --font-body: "Barlow", sans-serif;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease forwards;
+  opacity: 0;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}

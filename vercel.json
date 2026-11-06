@@ -1,0 +1,6 @@
+{
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm --filter @motormacete/database db:migrate:deploy && cd apps/web && pnpm build",
+  "framework": "nextjs",
+  "outputDirectory": "apps/web/.next"
+}

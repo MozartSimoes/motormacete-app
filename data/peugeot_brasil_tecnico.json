@@ -1,0 +1,1000 @@
+{
+  "meta": {
+    "gerado_em": "2026-05-21",
+    "idioma": "pt-BR",
+    "descricao": "Dados técnicos compilados de fóruns mundiais (PistonHeads, PeugeotForums, Reclame Aqui, Motorguia, Honest John, etuners.gr), boletins técnicos Stellantis/PSA, Revista O Mecânico, e dados de recall oficiais. Todos os preços em BRL quando disponíveis.",
+    "aviso": "Sempre confirme especificações na plaqueta da porta do motorista ou no manual do proprietário do veículo específico."
+  },
+
+  "modelos": {
+
+    "peugeot_208_gen1": {
+      "nome": "Peugeot 208 Geração 1",
+      "anos_brasil": "2013–2020",
+      "motores_brasil": [
+        "1.5 8v TU5JP4 Flex (Active, Active Pack)",
+        "1.6 16v THP EP6 Flex (Allure, GT, GT Line)"
+      ],
+
+      "macetes": {
+        "oleo_motor": {
+          "motor_1_5_8v": {
+            "viscosidade": "5W-30 sintético",
+            "norma": "ACEA A3/B4",
+            "capacidade_litros": "3.5 litros (com filtro)",
+            "intervalo_km": "10.000 km ou 12 meses",
+            "marcas_recomendadas": ["Total Quartz 9000 5W-30", "Castrol EDGE 5W-30", "Mobil Super 3000 5W-30"],
+            "dica_mecanico": "Sempre trocar o anel de vedação do bujão do cárter a cada troca. Motor simples e econômico, raramente causa problemas se o óleo for trocado em dia."
+          },
+          "motor_1_6_thp": {
+            "viscosidade": "0W-30 totalmente sintético",
+            "norma": "ACEA C2 / PSA B71 2302",
+            "capacidade_litros": "4.25 litros (com filtro)",
+            "intervalo_km": "10.000 km — recomenda-se 5.000 km na prática brasileira para proteger o turbo",
+            "marcas_recomendadas": ["Total Quartz Ineo First 0W-30 (PSA B71 2302)", "Total Quartz Ineo HTC 5W-30 (PSA B71 2297)"],
+            "dica_mecanico": "NUNCA usar óleo semissintético ou viscosidade errada no THP. O motor é MUITO sensível à qualidade do óleo — usar 5W-40 ou viscosidade maior encurta muito a vida da corrente. PSA exige 100% sintético com especificação C2. No Brasil (condições severas), alguns especialistas recomendam trocar a cada 7.000 km.",
+            "norma_psa": "PSA B71 2302 (Total Ineo First 0W-30) ou B71 2297 (Ineo HTC 5W-30) — confirme pelo VIN (posições 6-8)"
+          }
+        },
+        "cambio": {
+          "manual_5v": {
+            "tipo": "Manual 5 marchas",
+            "fluido": "Total Transmission BV 75W-80",
+            "capacidade": "2.0 litros",
+            "intervalo": "Fabricante: 'vitalício'. Recomendado: 60.000–80.000 km"
+          },
+          "automatico_eat6": {
+            "tipo": "Automático 6 marchas AISIN AT6 (EAT6)",
+            "fluido": "AISIN AW-1 (ATF AW-1 — NÃO confundir com Dexron, fluido específico)",
+            "capacidade_total": "7 litros",
+            "capacidade_troca_parcial": "3–4 litros (restante fica no conversor de torque)",
+            "intervalo": "Fabricante: 'vitalício'. Recomendado: 60.000–80.000 km com scanner OBD para reset do contador de desgaste",
+            "temperatura_troca": "Dreno com câmbio aquecido a aproximadamente 60°C (verificar via scanner)",
+            "torques_tampoes": "Tampão de nível: 0.7 kgf.m; Tampão de dreno: 4.7 kgf.m; Tampão de enchimento: 3.9 kgf.m",
+            "dica_mecanico": "Após enchimento, verificar nível com motor ligando — o correto é que o óleo pingue lentamente pelo tampão de nível. Não usar DEXRON neste câmbio."
+          },
+          "robotizada_etg5_etg6": {
+            "tipo": "Robotizada ETG5/ETG6 (caixa sequencial de embreagem simples — NÃO é dupla embreagem)",
+            "fluido": "Total Transmission MV 75W-80",
+            "capacidade": "1.9 litros",
+            "intervalo": "30.000–40.000 km — CRÍTICO manter este intervalo",
+            "problema_cronico": "VER seção problemas_cronicos.cambio_etg6",
+            "dica_mecanico": "A caixa ETG6 no Brasil é notoriamente problemática. Verifique se a reprogramação (software update) foi feita na concessionária — muitos dos trancos e solavancos somem após update. Troca do atuador da embreagem e adaptação podem resolver parte dos problemas."
+          }
+        },
+        "partida_frio": {
+          "motor_1_5_8v_flex": "Partida normal. Motor otto convencional, sem sistema específico.",
+          "motor_1_6_thp_flex": {
+            "descricao": "O THP 1.6 usa injeção direta com pressão de combustível alta — NÃO precisa de reservatório auxiliar de gasolina como nos motores TU antigos. A pressão de injeção (~100 bar) permite vaporização mesmo com etanol em baixas temperaturas.",
+            "procedimento": "1. Entre no veículo, feche a porta. 2. Pressione o pedal de freio. 3. Pressione o botão START/STOP (ou gire a chave). 4. NÃO acelere durante a partida. 5. O motor pode rodar por 5–10 segundos antes de pegar em dias muito frios com tanque cheio de etanol. 6. Aguarde o ralenti se estabilizar antes de engatar marcha.",
+            "dica_combustivel": "Com 100% etanol em temperatura abaixo de 15°C pode haver dificuldade. Solução: manter pelo menos 20–30% de gasolina no tanque no inverno. O THP com etanol puro tem melhor desempenho, mas na partida a frio misturar ajuda.",
+            "gasolina_aditivada": "Preferível gasolina aditivada (Shell V-Power, Ipiranga Podium) para prevenir carbonização nas válvulas de admissão — problema documentado do motor de injeção direta."
+          }
+        },
+        "distribuicao": {
+          "motor_1_5_8v": {
+            "tipo": "Correia dentada seca (dry belt) — motor TU5JP4",
+            "intervalo_km": "50.000–60.000 km (prática de mercado brasileiro)",
+            "intervalo_anos": "4 anos",
+            "kit_completo": "Correia + tensionador + polia louca + bomba d'água (recomendado trocar junto)",
+            "risco": "Motor INTERFERENTE — se a correia romper, pistões batem nas válvulas causando destruição do motor. Custo de reconstrução: R$ 4.000–8.000",
+            "dica_mecanico": "Nunca reutilizar correia velha. Trocar sempre o tensionador e a polia junto. Se a bomba d'água aciona via correia dentada (verificar no modelo), trocá-la também."
+          },
+          "motor_1_6_thp": {
+            "tipo": "Corrente de distribuição (timing chain) — motor EP6",
+            "intervalo": "Fabricante: 'vitalícia'. Recomendado por especialistas: 80.000–120.000 km conforme desgaste",
+            "problema_tensionador": "O tensionador hidráulico do EP6 é problemático — ao ranger na partida a frio (5–15 segundos de barulho metálico) e depois parar, isso indica desgaste do tensionador. Se não substituído, pode causar pulo de corrente (perda de ponto) sem aviso.",
+            "diagnostico_obsequio": "Via OBD: monitorar Long-Term Fuel Trim (LTFT). Se LTFT > +10%, há perda de sincronismo da corrente — URGENTE verificar tensionador e corrente.",
+            "custo_kit_corrente": "Kit corrente + tensionador + guias: R$ 800–1.500 (peças) + R$ 600–900 mão de obra",
+            "dica_mecanico": "Em motores THP150 e THP156 o pulo de corrente é muito mais comum do que no THP200 (EP6 CDTX). Ao comprar 208 THP usado, verificar se há barulho de corrente a frio — sinal de alerta."
+          }
+        },
+        "velas_ignicao": {
+          "motor_1_5_8v": {
+            "tipo": "NGK BKR6E-D (convencional) ou NGK BKR6ED",
+            "quantidade": 4,
+            "gap_mm": "0.8 mm",
+            "intervalo_km": "20.000–30.000 km",
+            "custo_jogo_brl": "R$ 60–120"
+          },
+          "motor_1_6_thp": {
+            "tipo": "Vela de iridium de eletrodo fino — NGK ILZKAR8B8G ou similar de alta performance",
+            "quantidade": 4,
+            "gap_mm": "0.8–0.9 mm (máximo 0.9 mm)",
+            "intervalo_km": "20.000 km (NÃO usar 40.000 km como fabricante diz em condições brasileiras)",
+            "aviso": "Com etanol o desgaste das velas é maior. Velas desgastadas no THP causam misfire que pode desnivelar o motor e acionar luz de cheque motor. Código OBD mais comum: P0300 (misfire aleatório), P0301–P0304 (misfire cilindro específico).",
+            "custo_jogo_brl": "R$ 200–400 (iridium)"
+          }
+        },
+        "combustivel_dicas": {
+          "etanol": "O THP Flex foi desenvolvido para funcionar com etanol — rende mais e tem maior octanagem. Usar etanol puro é viável se preço for vantajoso.",
+          "gasolina_aditivada": "Preferir gasolina aditivada (V-Power, Podium) pelo menos 1 a cada 4 abastecimentos para ajudar a limpar os bicos injetores e reduzir carbonização das válvulas.",
+          "gasolina_comum": "Pode usar, mas aumenta risco de carbonização nas válvulas de admissão (problema do THP) e no longo prazo piora o desempenho.",
+          "mistura": "Com etanol acima de 80% em temperaturas muito frias (< 12°C), a partida pode ser difícil. Manter 20–30% de gasolina no inverno."
+        },
+        "teto_solar": {
+          "modelos_afetados": "208 com teto solar panorâmico (versões GT Line, GT)",
+          "problema": "Drenos dos cantos do teto solar entopem com folhas secas, sujeira e resíduos urbanos. Água se acumula e vaza pelo painel/tapete.",
+          "manutencao": "Desentupir os 4 drenos (cantos) a cada 15.000–20.000 km usando aspirador de bico fino ou jato de ar comprimido em baixa pressão.",
+          "aviso": "NUNCA usar arame ou objeto metálico nos drenos — os dutos são de borracha macia e furam facilmente.",
+          "custo_drenos_entupidos": "Desobstrução: R$ 100–300 em borracharia ou lava-rápido especializado"
+        }
+      },
+
+      "problemas_cronicos": {
+        "thp_consumo_oleo": {
+          "descricao": "Consumo excessivo de óleo no motor THP 1.6 (EP6) — problema documentado mundialmente",
+          "consumo_normal": "Até 1 litro a cada 5.000 km é considerado 'normal' pela PSA/Stellantis para este motor",
+          "consumo_anormal": "Acima de 1 litro a cada 1.000–2.000 km indica falha — verificar anéis de pistão e retentores de válvulas",
+          "causas": [
+            "Anéis de pistão (segmentos) com design inadequado nas primeiras gerações EP6 — anel de controle de óleo entope de carbono e perde vedação",
+            "Retentores de válvulas (vedadores do guia de válvula) desgastados — óleo passa pelo guia e é queimado",
+            "Turbocompressor com desgaste no eixo — óleo é aspirado para o coletor de admissão e queimado"
+          ],
+          "sintomas": [
+            "Fumaça azulada no escape (especialmente na partida a frio)",
+            "Necessidade de completar óleo frequentemente entre trocas",
+            "Velas pretas/oleosas em inspeção",
+            "Odor de óleo queimado"
+          ],
+          "class_action_eua": "Há class actions registradas nos EUA contra PSA/Stellantis pelo consumo excessivo de óleo do EP6, principalmente em veículos Mini Cooper S (mesmo motor Prince/THP). A Peugeot/Citroën não vendeu em volume nos EUA, mas o motor BMW Prince com as mesmas características gerou ações judiciais.",
+          "solucao": [
+            "1. Diagnóstico: teste de compressão e teste de estanqueidade de cilindros",
+            "2. Se retentores ruins: substituição dos vedadores de válvulas da cabeça (R$ 1.500–3.000 mão de obra + peças)",
+            "3. Se anéis ruins: retífica do motor ou motor reconstruído (R$ 5.000–12.000)",
+            "4. Turbo com folga: substituição do turbo (R$ 2.500–5.000 novo, R$ 1.500–2.500 recondicionado)"
+          ],
+          "dica": "Verificar o nível de óleo A CADA abastecimento neste motor. Monitorar consumo: se o motor usa mais de 1 litro antes de 3.000 km, já deve ser investigado."
+        },
+        "thp_carbonizacao_valvulas": {
+          "descricao": "Carbonização das válvulas de admissão — problema inerente à injeção direta sem lavagem das válvulas",
+          "causa": "Na injeção direta, o combustível é injetado direto no cilindro (não no coletor). Vapores de óleo do sistema PCV e EGR depositam-se nas válvulas de admissão sem serem lavados pelo combustível. Com o tempo, formam-se crostas duras de carbono.",
+          "intervalo_aparecimento": "Perda de desempenho notável a partir de 50.000–80.000 km sem limpeza",
+          "sintomas": [
+            "Perda de potência (até 20% em casos severos)",
+            "Ralenti irregular",
+            "Dificuldade de partida a frio",
+            "Consumo de combustível aumentado",
+            "NÃO aciona código OBD na maioria dos casos — diagnóstico difícil"
+          ],
+          "solucao": [
+            "Limpeza química via spray (Seafoam, WD-40 Injeção Direta) no coletor com motor quente — eficaz apenas para depósitos leves",
+            "Limpeza por walnut blasting (jato de nozes trituradas) — método mais eficaz para carbonização severa, requer desmontagem do coletor",
+            "Custo limpeza walnut blast: R$ 800–1.800"
+          ],
+          "prevencao": [
+            "Usar gasolina aditivada 1 a cada 4 abastecimentos",
+            "Fazer arrancadas em alta rotação ocasionais para 'queimar' os depósitos",
+            "Manter sistema PCV limpo — trocar a tampa de válvulas com a membrana PCV se defeituosa"
+          ]
+        },
+        "thp_perda_sincronismo": {
+          "descricao": "Perda de sincronismo da corrente de distribuição — THP 150/156 especialmente vulnerável",
+          "causa": "Tensionador hidráulico fraco ou emperrado + corrente esticada + óleo degradado não sustenta a tensão adequada",
+          "sintomas_precoces": [
+            "Barulho de 'chocalho/chacoalho' na partida a frio durando 5–15 segundos e desaparecendo",
+            "LTFT (Long Term Fuel Trim) via OBD > +10% sem causa de sensor identificada",
+            "Leve perda de desempenho em baixas rotações"
+          ],
+          "sintomas_avancados": [
+            "Luz de cheque motor acesa",
+            "Códigos P0011, P0012, P0014 (posição de árvore de cames fora do alvo)",
+            "Pulo de marcha da corrente — motor entra em modo de emergência ou para"
+          ],
+          "urgencia": "CRÍTICO — se houver barulho de corrente a frio, NÃO ignorar. A corrente pode pular um ou mais dentes, causando colisão de pistões com válvulas e destruição do motor. Custo: R$ 8.000–20.000",
+          "solucao": "Substituição imediata do tensionador hidráulico + corrente + guias. Custo: R$ 1.400–2.400 (peças + mão de obra)"
+        },
+        "cambio_etg6": {
+          "descricao": "Caixa robotizada ETG5/ETG6 — problema crônico grave no Brasil",
+          "tipo_tecnico": "Caixa robotizada de embreagem SIMPLES (não é dupla embreagem DCT). O sistema simula automático mas usa embreagem única controlada eletronicamente.",
+          "problema_principal": "Trancos e solavancos em manobras de baixa velocidade (estacionamento, engarrafamento), trocas bruscas, hesitação ao arrancar",
+          "causa_raiz": [
+            "O algoritmo de controle da embreagem é sensível — a embreagem patina calculadamente para suavizar trocas, mas o desgaste e a degradação do atuador afetam o comportamento",
+            "Atuador eletro-hidráulico da embreagem se desgasta e perde calibração",
+            "Software desatualizado agrava o comportamento",
+            "Ponto de contato da embreagem muda com desgaste — sistema precisa de 'aprendizado' periódico"
+          ],
+          "solucao_nivel1": "Reprogramação (software update) na concessionária — resolve 40–60% dos casos de solavanco. GRATUITO se em garantia.",
+          "solucao_nivel2": "Procedimento de 'adaptação da embreagem': desligar e religar o veículo, deixar o sistema recalibrar o ponto de contato via scanner específico PSA/Stellantis.",
+          "solucao_nivel3": "Substituição do atuador eletro-hidráulico da embreagem (módulo CSC — Concentric Slave Cylinder). Custo: R$ 2.500–5.000 peça + mão de obra.",
+          "solucao_nivel4": "Substituição completa da embreagem (disco + platô + rolamento). Custo: R$ 2.000–4.000.",
+          "dica_uso_diario": [
+            "NUNCA segurar o veículo em aclive apenas com o acelerador (queima a embreagem rapidamente)",
+            "Em engarrafamentos severos, acionar o freio de mão ao parar e soltar suavemente ao partir",
+            "Trocar o fluido da caixa a cada 30.000–40.000 km (Total Transmission MV 75W-80)",
+            "Não fazer manobras rápidas frente-a-ré em baixas velocidades"
+          ],
+          "reclamacoes_brasil": "Alta frequência de reclamações no Reclame Aqui — múltiplos casos de substituição de embreagem antes de 30.000 km",
+          "veredicto": "A ETG6 é a transmissão mais problemática da linha Peugeot no Brasil. Ao comprar usado com ETG6, testar exaustivamente em engarrafamento antes de fechar negócio."
+        }
+      },
+
+      "manutencao_intervalos": {
+        "oleo_filtro": "10.000 km ou 12 meses (motor 1.5); 10.000 km ou 12 meses / recomendado 7.000 km (motor THP)",
+        "correia_dentada_1_5": "50.000–60.000 km ou 4 anos",
+        "corrente_thp": "Inspecionar a cada 80.000 km — sem intervalo fixo de troca, mas tensionador e guias devem ser verificados",
+        "velas_1_5": "20.000–30.000 km",
+        "velas_thp": "20.000 km com etanol",
+        "filtro_ar_motor": "20.000 km",
+        "filtro_cabine": "20.000 km",
+        "fluido_arrefecimento": "80.000 km ou 3 anos — usar refrigerante PSA OAT orgânico (Total Coolelf, rosa/roxo)",
+        "fluido_freio": "2 anos independente de km (higroscópico)",
+        "fluido_cambio_eat6": "60.000–80.000 km (recomendado) — AW-1",
+        "fluido_cambio_etg": "30.000–40.000 km — Total Transmission MV 75W-80",
+        "drenos_teto_solar": "20.000 km ou anualmente"
+      },
+
+      "calibragem_pneus": {
+        "nota": "Sempre verificar a plaqueta na coluna B da porta do motorista para o veículo específico",
+        "versoes": {
+          "1_5_8v_aro_15_185_65_R15": {
+            "dianteiro_normal_psi": 32,
+            "traseiro_normal_psi": 29,
+            "dianteiro_carga_psi": 32,
+            "traseiro_carga_psi": 33,
+            "estepe_125_80_R15_psi": 61
+          },
+          "1_5_8v_aro_16_195_55_R16": {
+            "dianteiro_normal_psi": 32,
+            "traseiro_normal_psi": 30,
+            "dianteiro_carga_psi": 33,
+            "traseiro_carga_psi": 36,
+            "estepe_125_80_R15_psi": 61
+          },
+          "1_6_thp_aro_16_195_55_R16": {
+            "dianteiro_normal_psi": 33,
+            "traseiro_normal_psi": 30,
+            "dianteiro_carga_psi": 33,
+            "traseiro_carga_psi": 35
+          },
+          "1_6_thp_aro_17_205_45_R17": {
+            "dianteiro_normal_psi": 36,
+            "traseiro_normal_psi": 30,
+            "dianteiro_carga_psi": 36,
+            "traseiro_carga_psi": 36,
+            "estepe_125_80_R15_psi": 61
+          }
+        }
+      }
+    },
+
+    "peugeot_208_gen2": {
+      "nome": "Peugeot 208 Geração 2 (Novo 208)",
+      "anos_brasil": "2021–presente",
+      "motores_brasil": [
+        "1.6 16v EC5 Flex (Active, Griffe — motor montado no Brasil em Porto Real/RJ)",
+        "Nota: o 1.2 PureTech 3 cilindros turbo da geração europeia NÃO é vendido em volume no Brasil na versão flex — o motor usado no Brasil é o EC5 1.6"
+      ],
+
+      "macetes": {
+        "oleo_motor": {
+          "motor_ec5_1_6": {
+            "viscosidade": "0W-30 totalmente sintético",
+            "norma": "ACEA C2 / PSA B71 2302",
+            "capacidade_litros": "3.25 litros (com filtro — atenção: menor que o THP antigo)",
+            "intervalo_km": "10.000 km ou 12 meses",
+            "filtro_tipo": "Elemento filtrante ecológico (cartucho — não tem corpo metálico, só o elemento)",
+            "marcas_recomendadas": ["Total Quartz Ineo First 0W-30"],
+            "problema_cronico": "VAZAMENTO DE ÓLEO no suporte do filtro de óleo (entre bloco e suporte) é problema crônico documentado no EC5. Verificar em cada troca.",
+            "dica": "Ao trocar o filtro, inspecionar o suporte metálico do filtro por sinais de umidade/óleo — se houver, trocar a junta do suporte (R$ 50–150 peça)"
+          }
+        },
+        "cambio": {
+          "automatico_eat6_aisin": {
+            "tipo": "Automático 6 marchas AISIN AT6",
+            "fluido": "AISIN AW-1",
+            "capacidade_total": "5.5 litros (troca parcial: 3–4 litros)",
+            "intervalo_recomendado": "60.000 km",
+            "problemas_documentados": [
+              "Falha generalizada no câmbio com trava na 3ª marcha e mensagem 'Defeito na caixa de velocidade — procure reparo'",
+              "Trancos nas reduções de marcha em baixa quilometragem (inclusive com menos de 30 dias de uso)",
+              "Alta incidência no Reclame Aqui Brasil — múltiplos casos com menos de 20.000 km"
+            ],
+            "custo_reparo_externo": "R$ 6.000–8.000 em oficina independente",
+            "dica": "Se o câmbio travar na 3ª marcha: desligar e religar o veículo pode fazer sair do modo de emergência temporariamente. Levar à concessionária IMEDIATAMENTE."
+          }
+        },
+        "distribuicao": {
+          "motor_ec5": {
+            "tipo": "Correia dentada seca",
+            "intervalo": "80.000 km ou 6 anos (fabricante) — recomendado 60.000 km no Brasil",
+            "kit": "Correia + tensor + polia + correia do alternador/AC (mesma vida útil em km, mas menor em anos: 4 anos)",
+            "aviso_correia_acessorios": "As correias de acessórios (alternador/AC) têm mesmo intervalo em km (80.000) mas intervalo menor em tempo (4 anos). Trocar junto com a dentada."
+          }
+        },
+        "velas_ignicao": {
+          "motor_ec5_1_6": {
+            "tipo": "Iridium — NGK ILZKR7E10DG (EVI727) ou equivalente PSA",
+            "quantidade": 4,
+            "gap_mm": "1.1 mm",
+            "intervalo_km": "40.000 km ou 4 anos",
+            "custo_jogo_brl": "R$ 280–450"
+          }
+        },
+        "suspensao": {
+          "problema_comum": "Barulho/rangido na suspensão dianteira — documentado em múltiplos casos no Brasil",
+          "causas": [
+            "Buchas da barra estabilizadora desgastadas (bucha desloca a barra lateralmente causando raspado/rangido)",
+            "Batentes dos amortecedores desgastados",
+            "Buchas de bandeja comprometidas"
+          ],
+          "solucao": "Substituição das buchas da barra estabilizadora por peças genuínas. Simples e barato. Custo: R$ 200–500 par + mão de obra.",
+          "dica": "Ao trocar batentes de amortecedor, inspecionar os amortecedores por vazamento — alguns defeitos só aparecem com o amortecedor desmontado."
+        },
+        "ar_condicionado": {
+          "problema_cronico": "Falha crônica documentada: AC não gela ou gela pouco",
+          "boletim_tecnico": "Boletim C5HW014DQ0 (24/01/2020) — recomenda substituição dos O-rings (anéis de vedação) nos dutos de refrigeração da caixa evaporadora",
+          "chassis_afetados_2008": "Todos os Peugeot 2008 com número de chassi até 1564178",
+          "progressao": "A falha começa na caixa evaporadora, avança para o condensador e pode chegar ao compressor se não tratada",
+          "custo_reparo": "O-rings: R$ 200–400. Condensador + compressor (caso avançado): R$ 4.000–7.000",
+          "dica": "Se o AC funcionar bem por 10–20 minutos e depois de repente parar de gelar (ventila mas não resfria), o sintoma clássico é sensor de temperatura do evaporador com problema ou O-ring com vazamento."
+        },
+        "direcao_eletrica": {
+          "problema": "Folga precoce na caixa de direção elétrica — documentado em Peugeot 208 gen2 a partir de 30.000 km",
+          "sintoma": "Volante com folga lateral, imprecisão na direção, barulho na manobra",
+          "custo": "R$ 3.000–6.000 substituição da caixa de direção",
+          "status": "Problema documentado no Reclame Aqui — Peugeot Brasil com histórico de difícil atendimento pós-garantia"
+        }
+      },
+
+      "recall_2024_2025": {
+        "recall_ecu_2024": {
+          "modelo": "Peugeot 208 ano-modelo 2024",
+          "descricao": "Substituição do módulo de controle do motor (ECM) por possibilidade de infiltração de água na unidade causando desligamento repentino do motor em marcha",
+          "agendamento": "A partir de 26/05/2025 nas concessionárias Peugeot",
+          "custo": "Gratuito"
+        }
+      },
+
+      "manutencao_intervalos": {
+        "oleo_filtro": "10.000 km ou 12 meses",
+        "correia_dentada": "80.000 km ou 6 anos (recomendado 60.000 km)",
+        "correia_acessorios": "80.000 km ou 4 anos",
+        "velas": "40.000 km ou 4 anos",
+        "filtro_ar_motor": "20.000 km",
+        "filtro_cabine": "20.000 km",
+        "fluido_arrefecimento": "80.000 km ou 3 anos",
+        "fluido_freio": "2 anos",
+        "fluido_cambio_eat6": "60.000 km (AW-1)"
+      },
+
+      "calibragem_pneus": {
+        "nota": "Consultar plaqueta na coluna B da porta do motorista",
+        "versoes": {
+          "aro_16_195_55_R16_2021_2023": {
+            "dianteiro_normal_psi": 29,
+            "traseiro_normal_psi": 29,
+            "dianteiro_carga_psi": 33,
+            "traseiro_carga_psi": 36,
+            "estepe_125_80_R15_psi": 61
+          },
+          "aro_16_195_55_R16_2022_especifico": {
+            "dianteiro_normal_psi": 32,
+            "traseiro_normal_psi": 30,
+            "dianteiro_carga_psi": 35,
+            "traseiro_carga_psi": 42
+          }
+        }
+      }
+    },
+
+    "peugeot_2008_gen1": {
+      "nome": "Peugeot 2008 Geração 1",
+      "anos_brasil": "2014–2019",
+      "motores_brasil": [
+        "1.6 16v THP EP6 Flex (Allure, Griffe)"
+      ],
+
+      "macetes": {
+        "oleo_motor": {
+          "viscosidade": "0W-30 totalmente sintético",
+          "norma": "ACEA C2 / PSA B71 2302",
+          "capacidade_litros": "4.25 litros (com filtro)",
+          "intervalo_km": "10.000 km ou 12 meses (recomendado 7.000 km)",
+          "marcas_recomendadas": ["Total Quartz Ineo First 0W-30 (PSA B71 2302)"],
+          "dica": "Mesmo motor THP EP6 do 208 gen1 — mesmas recomendações e problemas. Ver seção 208_gen1."
+        },
+        "cambio": {
+          "automatico_at6": {
+            "tipo": "Automático 6 marchas AISIN AT6 (EAT6)",
+            "fluido": "AISIN AW-1",
+            "capacidade_total": "7 litros",
+            "capacidade_troca_parcial": "3–4 litros",
+            "intervalo": "60.000–80.000 km",
+            "dica": "Kit de troca disponível no mercado: Total Quartz 0W-30 4L (motor) + AW-1 4L (câmbio) — fornecedores especializados em Curitiba e São Paulo têm kits prontos."
+          },
+          "manual_5v": {
+            "fluido": "Total Transmission BV 75W-80",
+            "capacidade": "2.0 litros"
+          }
+        },
+        "distribuicao": {
+          "tipo": "Corrente de distribuição (motor THP EP6)",
+          "notas": "Idêntico ao 208 gen1 1.6 THP. Ver detalhes em 208_gen1 → distribuicao → motor_1_6_thp"
+        },
+        "ac_problema_chassi": {
+          "descricao": "Boletim técnico C5HW014DQ0 — O-rings da caixa evaporadora",
+          "chassis_limite": "Até chassi nº 1564178",
+          "solucao": "Substituição dos anéis de vedação nos dutos de refrigeração do evaporador"
+        }
+      },
+
+      "problemas_cronicos": {
+        "referencia_thp": "Ver peugeot_208_gen1 → problemas_cronicos — todos os problemas do THP 1.6 se aplicam integralmente ao 2008 gen1",
+        "suspensao_traseira": {
+          "descricao": "Compressor/cilindro de ar no conjunto de suspensão traseira (versões específicas com suspensão pneumática traseira opcional)",
+          "problema": "Falha do compressor ou cilindro de ar da suspensão traseira em modelos equipados"
+        }
+      },
+
+      "calibragem_pneus": {
+        "versoes": {
+          "1_6_16v_195_60_R16": {
+            "dianteiro_normal_psi": 35,
+            "traseiro_normal_psi": 35,
+            "dianteiro_carga_psi": 35,
+            "traseiro_carga_psi": 38
+          },
+          "1_6_16v_205_55_R16": {
+            "dianteiro_normal_psi": 35,
+            "traseiro_normal_psi": 35,
+            "dianteiro_carga_psi": 35,
+            "traseiro_carga_psi": 38
+          },
+          "1_6_16v_205_50_R17": {
+            "dianteiro_normal_psi": 35,
+            "traseiro_normal_psi": 35,
+            "dianteiro_carga_psi": 35,
+            "traseiro_carga_psi": 38
+          }
+        }
+      },
+
+      "manutencao_intervalos": {
+        "referencia": "Idêntico ao peugeot_208_gen1 com motor THP 1.6"
+      }
+    },
+
+    "peugeot_2008_gen2": {
+      "nome": "Peugeot 2008 Geração 2 (Novo 2008)",
+      "anos_brasil": "2021–presente",
+      "motores_brasil": [
+        "1.6 16v THP Flex (versões brasileiras — motor EP6 evoluído)"
+      ],
+      "nota_puretech": "O 1.2 PureTech europeu NÃO é vendido em larga escala no Brasil neste modelo. O mercado brasileiro recebe o motor 1.6 THP Flex.",
+
+      "macetes": {
+        "oleo_motor": {
+          "viscosidade": "0W-30 totalmente sintético",
+          "norma": "ACEA C2 / PSA B71 2302",
+          "capacidade_litros": "4.25 litros",
+          "intervalo_km": "10.000 km"
+        },
+        "cambio": {
+          "automatico_eat6": {
+            "fluido": "AISIN AW-1",
+            "capacidade": "5.5–7 litros (conforme geração)",
+            "intervalo": "60.000 km"
+          }
+        }
+      },
+
+      "calibragem_pneus": {
+        "versoes": {
+          "1_6_16v_205_55_R16": {
+            "dianteiro_normal_psi": 35,
+            "traseiro_normal_psi": 35,
+            "dianteiro_carga_psi": 35,
+            "traseiro_carga_psi": 38
+          },
+          "1_6_16v_205_50_R17": {
+            "dianteiro_normal_psi": 35,
+            "traseiro_normal_psi": 35,
+            "dianteiro_carga_psi": 35,
+            "traseiro_carga_psi": 38
+          }
+        }
+      }
+    },
+
+    "peugeot_3008_gen1": {
+      "nome": "Peugeot 3008 Geração 1",
+      "anos_brasil": "2012–2019",
+      "motores_brasil": [
+        "1.6 THP 16v EP6 Flex"
+      ],
+
+      "macetes": {
+        "oleo_motor": {
+          "viscosidade": "0W-30 totalmente sintético",
+          "norma": "ACEA C2 / PSA B71 2302",
+          "capacidade_litros": "4.25 litros (com filtro)",
+          "intervalo_km": "10.000 km (recomendado 7.000 km no Brasil)",
+          "marcas": ["Total Quartz Ineo First 0W-30"]
+        },
+        "cambio": {
+          "automatico_eat6": {
+            "fluido": "AISIN AW-1",
+            "capacidade": "7 litros",
+            "intervalo": "60.000–80.000 km"
+          },
+          "manual": {
+            "fluido": "Total Transmission BV 75W-80"
+          }
+        },
+        "distribuicao": {
+          "tipo": "Corrente de distribuição EP6",
+          "nota": "Mesmas características e problemas do THP EP6 em todos os modelos PSA"
+        },
+        "tampa_valvulas_pcv": {
+          "problema": "Membrana do sistema PCV (ventilação do cárter) embutida na tampa de válvulas — quando defeituosa causava óleo no coletor de admissão e consumo de óleo",
+          "solucao_antiga": "Nas versões mais antigas era necessário trocar a tampa inteira (R$ 600–1.200 peça)",
+          "solucao_nova": "PSA/Stellantis lançou tampa revisada com membrana substituível separadamente. Custo da membrana: R$ 150–300"
+        }
+      },
+
+      "problemas_cronicos": {
+        "thp_consumo_oleo": "VER peugeot_208_gen1 → problemas_cronicos → thp_consumo_oleo — idêntico",
+        "thp_carbonizacao": "VER peugeot_208_gen1 → problemas_cronicos → thp_carbonizacao_valvulas",
+        "compressor_ac": {
+          "descricao": "Falha do compressor de AC — problema documentado nos 3008 de primeira geração",
+          "causas": [
+            "Embreagem elétrica do compressor danificada",
+            "Válvula reguladora de pressão do compressor defeituosa",
+            "Sensor de pressão do AC com falha (afetou todos os THP — correção com novo sensor gratuita por campanha interna)"
+          ],
+          "sintoma": "AC liga mas não resfria; compressor engata mas não aumenta pressão",
+          "custo_compressor": "R$ 2.000–4.500 (compressor novo) ou R$ 1.000–2.000 (recondicionado)"
+        },
+        "suspensao": {
+          "descricao": "Desgaste precoce de componentes de suspensão — comum em uso urbano brasileiro",
+          "componentes": ["Buchas de bandeja", "Batentes de amortecedor", "Rolamentos de mancal"],
+          "intervalo_tipico_desgaste": "40.000–80.000 km conforme uso e qualidade das vias"
+        },
+        "eletrico_bateria": {
+          "descricao": "Problemas elétricos gerais relacionados à bateria fraca — o BSI é muito sensível à tensão da bateria",
+          "sintomas": [
+            "Módulos eletrônicos com comportamento errático",
+            "Alarme disparando aleatoriamente",
+            "Dificuldade de partida",
+            "Mensagens de erro de sistemas que 'somem' após carga da bateria"
+          ],
+          "solucao": "Verificar saúde da bateria (teste de carga/descarga). Substituir se capacidade < 75% do nominal. Usar carregador inteligente para manutenção se o veículo ficou parado."
+        }
+      },
+
+      "calibragem_pneus": {
+        "versoes": {
+          "1_6_thp_225_50_R17": {
+            "dianteiro_normal_psi": 36,
+            "traseiro_normal_psi": 36,
+            "dianteiro_carga_psi": 38,
+            "traseiro_carga_psi": 41
+          },
+          "1_6_thp_235_45_R18": {
+            "dianteiro_normal_psi": 36,
+            "traseiro_normal_psi": 36,
+            "dianteiro_carga_psi": 38,
+            "traseiro_carga_psi": 41
+          }
+        }
+      },
+
+      "manutencao_intervalos": {
+        "oleo_filtro": "10.000 km ou 12 meses",
+        "corrente_distribuicao": "Inspecionar a cada 80.000 km",
+        "velas": "20.000 km (etanol) / 30.000 km (gasolina)",
+        "filtro_ar": "20.000 km",
+        "filtro_cabine": "20.000 km",
+        "fluido_arrefecimento": "80.000 km ou 3 anos",
+        "fluido_freio": "2 anos"
+      }
+    },
+
+    "peugeot_3008_gen2": {
+      "nome": "Peugeot 3008 Geração 2",
+      "anos_brasil": "2022–presente",
+      "motores_brasil": [
+        "1.6 THP Flex"
+      ],
+      "nota": "Motor 1.6 THP atualizado. Mantém características do EP6 com melhorias. Mesmas recomendações de óleo, corrente e manutenção do gen1.",
+
+      "calibragem_pneus": {
+        "versoes": {
+          "1_6_thp_225_50_R17": {
+            "dianteiro_normal_psi": 36,
+            "traseiro_normal_psi": 36,
+            "dianteiro_carga_psi": 38,
+            "traseiro_carga_psi": 41
+          },
+          "1_6_thp_235_45_R18": {
+            "dianteiro_normal_psi": 36,
+            "traseiro_normal_psi": 36,
+            "dianteiro_carga_psi": 38,
+            "traseiro_carga_psi": 41
+          }
+        }
+      }
+    },
+
+    "peugeot_307": {
+      "nome": "Peugeot 307",
+      "anos_brasil": "2002–2012",
+      "motores_brasil": [
+        "1.6 16v TU5JP4 Flex",
+        "2.0 16v EW10 (motor do 406, 407, C5)"
+      ],
+
+      "macetes": {
+        "oleo_motor": {
+          "motor_1_6_16v": {
+            "viscosidade": "5W-30 sintético",
+            "norma": "ACEA A3/B4",
+            "capacidade_litros": "4.2 litros (com filtro)",
+            "intervalo_km": "10.000 km ou 12 meses",
+            "marcas": ["Total Quartz 9000 5W-30", "Castrol EDGE 5W-30"]
+          },
+          "motor_2_0_16v": {
+            "viscosidade": "5W-30 ou 5W-40 sintético",
+            "norma": "ACEA A3/B4",
+            "capacidade_litros": "5.0–5.5 litros (verificar para motor específico)",
+            "intervalo_km": "10.000 km ou 12 meses"
+          }
+        },
+        "cambio": {
+          "automatico_al4": {
+            "tipo": "Automático 4 marchas AL4 (DP0 na nomenclatura Renault)",
+            "fluido": "Mobil ATF LT71141 (DEXRON III-H) ou equivalente FEBI 14738",
+            "capacidade_total": "6 litros (com conversor de torque)",
+            "capacidade_troca_parcial": "4.5 litros",
+            "intervalo_fabricante": "'Vitalício' — NÃO é vitalício na prática",
+            "intervalo_recomendado": "40.000–60.000 km",
+            "temperatura_troca": "58–68°C (verificar via scanner)",
+            "problema_cronico": "VER problemas_cronicos → cambio_al4"
+          },
+          "manual": {
+            "fluido": "Total Transmission BV 75W-80 ou Elf Tranself NFP 75W-80"
+          }
+        },
+        "distribuicao": {
+          "motor_1_6_16v_tu5jp4": {
+            "tipo": "Correia dentada seca",
+            "intervalo": "50.000–60.000 km ou 4 anos",
+            "kit": "Correia + tensor + polia louca",
+            "bomba_dagua": "Acionada por correia separada (auxiliar) — verificar e trocar conforme desgaste visual",
+            "risco": "Motor INTERFERENTE — correia rompida = motor destruído",
+            "custo_kit_mais_mo": "R$ 400–800 (peças) + R$ 300–500 (mão de obra)"
+          },
+          "motor_2_0_16v_ew10": {
+            "tipo": "Correia dentada seca",
+            "intervalo": "80.000–100.000 km ou 5 anos",
+            "kit": "Correia + tensor + polias + bomba d'água (trocar junto)",
+            "aviso": "Motor 2.0 EW10 tem sistema de distribuição mais complexo — exige mecânico experiente com o motor. Kit original mais caro.",
+            "custo_kit_mais_mo": "R$ 800–1.500 (peças) + R$ 500–800 (mão de obra)"
+          }
+        },
+        "velas_ignicao": {
+          "motor_1_6_16v": {
+            "tipo": "NGK BKR6E ou Bosch FR7DC+",
+            "quantidade": 4,
+            "gap_mm": "0.8 mm",
+            "intervalo": "20.000–30.000 km",
+            "custo": "R$ 60–120 jogo"
+          },
+          "motor_2_0_16v": {
+            "tipo": "NGK LFR6A-11 (iridium) ou Bosch FR8SII35+",
+            "quantidade": 4,
+            "gap_mm": "1.1 mm",
+            "intervalo": "30.000–40.000 km",
+            "custo": "R$ 100–200 jogo"
+          }
+        },
+        "partida_frio_flex": {
+          "descricao": "O 307 flex com motor TU5JP4 usa sistema de partida a frio com reservatório de gasolina adicional (0.5 litro)",
+          "procedimento": "O reservatório auxiliar DEVE ser mantido sempre cheio com GASOLINA ADITIVADA. O sistema ativa automaticamente abaixo de 18°C com mistura > 80% etanol.",
+          "aviso_critico": "Se o reservatório estiver vazio e temperatura < 10°C com etanol puro, o motor não pega. Encher o reservatório primeiro.",
+          "localizacao_reservatorio": "Próximo ao conjunto de filtro de combustível, sob o capô — pequeno reservatório plástico transparente de aprox. 0.5L"
+        }
+      },
+
+      "problemas_cronicos": {
+        "cambio_al4": {
+          "descricao": "Caixa automática AL4 — problema crônico em Peugeot 307 com câmbio automático",
+          "sintoma_classico": "Luz de 'Esporte' e 'Neve' piscando simultaneamente, câmbio trava na 3ª marcha (modo de emergência), especialmente na primeira partida da manhã a frio. Após aquecer, o problema some.",
+          "causa_raiz": "Solenóides (eletroválvulas) da marca ACIM com defeito de design — entupirem com resíduos do fluido degradado, perdendo pressão hidráulica.",
+          "solucao_definitiva": {
+            "passo_1": "Substituir as eletroválvulas por modelo BORGWARNER (identificadas pelos anéis de vedação PRETOS — as defeituosas originais têm anéis de outra cor). Custo peças: R$ 400–800",
+            "passo_2": "Trocar o fluido ATF completamente por Mobil LT71141 sintético. Custo fluido: R$ 200–400",
+            "passo_3": "Reprogramar/atualizar software da UCT (Unidade de Controle da Transmissão) para compensar a maior pressão das válvulas novas. Requer scanner Lexia/Diagbox. Custo programação: R$ 200–400",
+            "custo_total_reparo": "R$ 1.500–2.200 na maioria dos casos",
+            "aviso": "90% dos casos condenados por concessionárias como 'caixa destruída' eram apenas falha de solenóide. Não aceitar orçamento de câmbio completo sem verificar solenóides primeiro."
+          },
+          "custo_se_fosse_trocar_cambio": "R$ 5.000–9.000 (câmbio revisado)",
+          "dica_adicional": "Instalar um radiador auxiliar de câmbio (oil cooler) reduz a temperatura do fluido e prolonga a vida dos solenóides — recomendado para climas quentes e uso urbano intenso."
+        },
+        "suspensao_barulhos": {
+          "componentes_desgaste_precoce": ["Buchas de bandeja dianteira", "Bieleta da barra estabilizadora", "Batentes de amortecedor"],
+          "intervalo_tipico": "40.000–60.000 km em uso urbano"
+        }
+      },
+
+      "calibragem_pneus": {
+        "versoes": {
+          "1_6_16v_195_65_R15": {
+            "dianteiro_normal_psi": 35,
+            "traseiro_normal_psi": 35,
+            "dianteiro_carga_psi": 35,
+            "traseiro_carga_psi": 35
+          },
+          "1_6_16v_205_55_R16": {
+            "dianteiro_normal_psi": 35,
+            "traseiro_normal_psi": 35,
+            "dianteiro_carga_psi": 35,
+            "traseiro_carga_psi": 35
+          },
+          "2_0_16v_205_55_R16": {
+            "dianteiro_normal_psi": 35,
+            "traseiro_normal_psi": 35,
+            "dianteiro_carga_psi": 35,
+            "traseiro_carga_psi": 35
+          }
+        },
+        "nota": "O 307 usa pressão uniforme dianteiro/traseiro na maioria das versões — 2.4 bar = 35 PSI em todas as condições normais"
+      },
+
+      "manutencao_intervalos": {
+        "oleo_filtro": "10.000 km ou 12 meses",
+        "correia_1_6": "50.000–60.000 km ou 4 anos",
+        "correia_2_0": "80.000–100.000 km ou 5 anos",
+        "velas_1_6": "20.000–30.000 km",
+        "velas_2_0": "30.000–40.000 km",
+        "filtro_ar": "20.000 km",
+        "filtro_cabine": "15.000–20.000 km",
+        "fluido_arrefecimento": "80.000 km ou 3 anos",
+        "fluido_freio": "2 anos",
+        "fluido_cambio_al4": "40.000–60.000 km (Mobil LT71141)"
+      }
+    },
+
+    "peugeot_408": {
+      "nome": "Peugeot 408",
+      "anos_brasil": "2011–2018",
+      "motores_brasil": [
+        "1.6 THP 16v EP6 Flex (143 cv / versões automáticas e manuais)",
+        "2.0 16v EW10 Flex (143 cv / versões automáticas e manuais)"
+      ],
+
+      "macetes": {
+        "oleo_motor": {
+          "motor_1_6_thp": {
+            "viscosidade": "0W-30 totalmente sintético",
+            "norma": "ACEA C2 / PSA B71 2302",
+            "capacidade_litros": "4.25 litros",
+            "intervalo": "10.000 km (recomendado 7.000 km)",
+            "marcas": ["Total Quartz Ineo First 0W-30"]
+          },
+          "motor_2_0_16v": {
+            "viscosidade": "5W-30 ou 5W-40 sintético",
+            "norma": "ACEA A3/B4",
+            "capacidade_litros": "5.0–5.5 litros",
+            "intervalo": "10.000 km ou 12 meses",
+            "marcas": ["Total Quartz 9000 5W-30", "Mobil Super 3000 5W-30"]
+          }
+        },
+        "cambio": {
+          "automatico_al4": {
+            "tipo": "Automático 4 marchas AL4 (versão 2.0)",
+            "fluido": "Mobil ATF LT71141",
+            "capacidade": "6 litros",
+            "intervalo": "40.000–60.000 km",
+            "nota": "Mesmos problemas crônicos do 307 com AL4 — ver seção peugeot_307 → problemas_cronicos → cambio_al4"
+          },
+          "manual_5v": {
+            "fluido": "Total Transmission BV 75W-80",
+            "capacidade": "2.0 litros"
+          }
+        },
+        "distribuicao": {
+          "motor_1_6_thp": {
+            "tipo": "Corrente de distribuição EP6",
+            "nota": "Mesmos problemas de tensionador e LTFT do THP. Ver 208_gen1 → distribuicao → motor_1_6_thp"
+          },
+          "motor_2_0_16v": {
+            "tipo": "Correia dentada seca EW10",
+            "intervalo": "80.000–100.000 km ou 5 anos",
+            "kit": "Correia + tensor + polias + bomba d'água",
+            "custo": "R$ 800–1.800 (peças) + R$ 500–900 (mão de obra)"
+          }
+        },
+        "velas": {
+          "motor_1_6_thp": {
+            "tipo": "Iridium — NGK ILZKAR8B8G ou similar",
+            "intervalo": "20.000 km com etanol",
+            "quantidade": 4
+          },
+          "motor_2_0_16v": {
+            "tipo": "NGK LFR6AIX11 (iridium)",
+            "codigo_ngk": "LFR6AIX11 / VIVV6619",
+            "hex_mm": 16,
+            "rosca_mm_passo": "14/1.25",
+            "comprimento_rosca_mm": 26.5,
+            "grau_termico": 6,
+            "gap_mm": 1.1,
+            "intervalo": "30.000–40.000 km",
+            "quantidade": 4,
+            "custo_jogo": "R$ 150–300"
+          }
+        }
+      },
+
+      "problemas_cronicos": {
+        "thp_consumo_oleo": "Ver peugeot_208_gen1 → problemas_cronicos — idêntico ao motor THP EP6",
+        "thp_corrente": "Ver peugeot_208_gen1 → distribuicao → motor_1_6_thp → problema_tensionador",
+        "al4_problemas": "Ver peugeot_307 → problemas_cronicos → cambio_al4 — idêntico",
+        "carbonizacao_thp": "Ver peugeot_208_gen1 → problemas_cronicos → thp_carbonizacao_valvulas"
+      },
+
+      "calibragem_pneus": {
+        "versoes": {
+          "1_6_thp_215_55_R16": {
+            "dianteiro_normal_psi": 33,
+            "traseiro_normal_psi": 33,
+            "dianteiro_carga_psi": 35,
+            "traseiro_carga_psi": 45
+          },
+          "2_0_16v_215_55_R16": {
+            "dianteiro_normal_psi": 33,
+            "traseiro_normal_psi": 33,
+            "dianteiro_carga_psi": 35,
+            "traseiro_carga_psi": 45
+          },
+          "225_45_R17": {
+            "dianteiro_normal_psi": 38,
+            "traseiro_normal_psi": 35,
+            "dianteiro_carga_psi": 38,
+            "traseiro_carga_psi": 38
+          }
+        }
+      },
+
+      "manutencao_intervalos": {
+        "oleo_filtro_thp": "10.000 km (recomendado 7.000 km)",
+        "oleo_filtro_2_0": "10.000 km ou 12 meses",
+        "corrente_thp": "Inspecionar a cada 80.000 km",
+        "correia_2_0": "80.000–100.000 km ou 5 anos",
+        "velas_thp": "20.000 km",
+        "velas_2_0": "30.000–40.000 km",
+        "filtro_ar": "20.000 km",
+        "filtro_cabine": "20.000 km",
+        "fluido_arrefecimento": "80.000 km ou 3 anos",
+        "fluido_freio": "2 anos",
+        "fluido_cambio_al4": "40.000–60.000 km"
+      }
+    }
+  },
+
+  "problemas_transversais": {
+
+    "puretech_1_2_correia_molhada": {
+      "titulo": "Motor 1.2 PureTech — Problema da Correia Banhada a Óleo (Wet Belt)",
+      "relevancia_brasil": "O 1.2 PureTech é vendido no Brasil principalmente em versões importadas do Peugeot 208 e 2008. O Brasil não recebeu as versões com a promessa europeia de 240.000 km sem manutenção — o intervalo no Brasil foi especificado em 80.000 km, o que reduziu a incidência de falhas catastróficas.",
+      "mecanismo_falha": "A correia de distribuição opera submersa no óleo do motor ('correia molhada'). Em ciclos curtos e uso urbano intenso, gotículas de combustível não queimado escorregam pelas paredes do cilindro e se misturam ao óleo do cárter, criando uma mistura abrasiva que degrada a correia prematuramente.",
+      "consequencias": [
+        "Fragmentos de borracha da correia contaminam o óleo",
+        "Fragmentos entopem o coador da bomba de óleo",
+        "Queda de pressão de óleo — sem aviso imediato ao condutor",
+        "Danos internos: turbo, pistões, árvore de cames",
+        "Em casos graves: falha total do motor — necessidade de motor reconstruído ou substituição"
+      ],
+      "codigos_obd_possiveis": ["P0016 (correlação árvore de cames/virabrequim)", "P0017", "P0300–P0303 (misfires)", "P0011", "P0014"],
+      "recall_europa_australia": "PSA lançou recall código JZR (Peugeot) / HFC (Citroën/DS) para veículos fabricados entre março de 2013 e abril de 2017 com motor PureTech 110cv ou 130cv. Mais de 500.000 veículos afetados na Europa.",
+      "recall_brasil": "Recall específico para correia molhada NÃO foi oficialmente anunciado pelo DENATRAN/SENATRAN para o Brasil com ampla divulgação. Há um código de campanha interna (ZWR) reportado no Reclame Aqui como não divulgado no site oficial Peugeot Brasil.",
+      "extensao_garantia_2024": "Desde março de 2024, Stellantis adotou extensão de garantia para casos do PureTech 1.0 e 1.2: cobertura de até 10 anos ou 180.000 km para reclamações relacionadas à correia e falhas de motor.",
+      "kit_substituicao_corrente": "Existe kit 'Pro Chain' de conversão para CORRENTE de distribuição (EB0 e EB2 engines), disponível principalmente para mercado europeu. Sem confirmação oficial de disponibilidade no Brasil. O kit inclui corrente, engrenagens, guias, tensionador e linha de lubrificação específica. NÃO requer usinagem do bloco.",
+      "nova_geracao_sem_correia": "Desde 2023, Stellantis lançou o EB Gen3 com CORRENTE de distribuição em substituição à correia molhada problemática. Na Europa, o nome 'PureTech' foi descontinuado após a repercussão negativa.",
+      "intervalo_troca_brasil_recomendado": "80.000 km ou 6 anos — mas especialistas recomendam 60.000 km ou 4 anos para maior segurança",
+      "custo_troca_correia_brasil_2021_2022": "R$ 1.100–1.500 (peças Dayco originais) + R$ 400–700 (mão de obra) = R$ 1.500–2.200 total",
+      "pecas_obrigatorias": ["Correia (Dayco 118SP+160HT/1)", "Tensionador (Dayco ATB 2660)", "Rolamento suporte (Dayco ATB 2626)", "Correia auxiliar bomba d'água (Dayco 3PK 576 EE)", "Correia alternador/AC (Dayco 6PK1070)", "Tensor acessórios (Dayco APV 3220)", "Parafuso do cubo do virabrequim (novo — torque angular)", "Parafusos da polia do comando (novos)"],
+      "ferramenta_especial": "Jogo Raven 161015 (pino de trava do volante + travas do eixo de comando). SEM ESTA FERRAMENTA NÃO FAZER O SERVIÇO — risco de dobrar o eixo de comando.",
+      "torques_criticos": {
+        "parafuso_polia_comando_etapa1": "20 Nm",
+        "parafuso_polia_comando_etapa2": "120° angular (dividir em 2x 60°) — DOIS MECÂNICOS recomendados",
+        "parafuso_cubo_virabrequim_etapa1": "50 Nm",
+        "parafuso_cubo_virabrequim_etapa2": "180° angular (dividir em 3x 60°)"
+      }
+    },
+
+    "bsi_reset_procedimento": {
+      "titulo": "BSI (Body Systems Interface) — Módulo Central Eletrônico Peugeot",
+      "descricao": "O BSI é o módulo central que gerencia: travamento central, iluminação interior/exterior, imobilizador, painel de instrumentos/hodômetro, comunicação entre ECUs. EXTREMAMENTE sensível a problemas de bateria e desconexões incorretas.",
+      "sintomas_bsi_com_problema": [
+        "Vários sistemas com falha simultânea (airbag + ABS + motor — normalmente indicam BSI, não falha individual)",
+        "Alarme disparando aleatoriamente",
+        "Vidros elétricos, travas e espelhos parando de funcionar",
+        "Hodômetro congelado ou zerando",
+        "Veículo não liga sem causa aparente",
+        "Luz do motor acesa com múltiplos códigos que somem com desconexão da bateria",
+        "Codificação de chave perdida"
+      ],
+      "procedimento_reset_bsi": {
+        "preparacao": [
+          "Abrir o capô",
+          "Baixar a janela do motorista (importante para acionar luzes de dentro depois)",
+          "Desligar todos os equipamentos elétricos",
+          "Retirar a chave da ignição",
+          "Fechar TODAS as portas"
+        ],
+        "desconexao": [
+          "Aguardar 3 minutos (deixar o BSI 'dormir')",
+          "Desconectar o terminal NEGATIVO (-) da bateria",
+          "Aguardar 15 segundos"
+        ],
+        "reconexao": [
+          "Fechar todas as portas se abertas",
+          "Chave fora da ignição",
+          "Reconectar o terminal negativo da bateria",
+          "NÃO abrir nenhuma porta",
+          "Aguardar 10 segundos",
+          "Pela janela aberta do motorista, ligar as luzes de estacionamento (não por isso abrir a porta)",
+          "Introduzir a chave na ignição pela janela",
+          "Girar a ignição para 'ON' (não dar a partida ainda)",
+          "Dar a partida normalmente"
+        ],
+        "sincronizar_chave": "Com a chave na ignição (motor ligado), pressionar e segurar o botão de TRAVAR da chave por 10 segundos para reestabelecer o link com o imobilizador",
+        "aviso": "Procedimento incorreto pode corromper o software do BSI, exigindo reprogramação em concessionária (R$ 500–1.500 com equipamento Diagbox)"
+      },
+      "quando_reset_nao_resolve": "Se após o reset correto os problemas persistirem, o BSI pode estar com hardware defeituoso. Custo de substituição: R$ 1.500–4.000 (peça nova + programação VIN). Opção: enviar BSI para recondicionamento eletrônico especializado (R$ 600–1.200).",
+      "dica_preventiva": "Bateria fraca é a principal causa de BSI com defeito em Peugeot. Se o carro ficará parado por mais de 2 semanas, usar carregador de manutenção (trickle charger). Nunca dar partida com auxiliar de bateria sem seguir procedimento correto."
+    },
+
+    "cambio_al4_informacoes_gerais": {
+      "titulo": "Caixa Automática AL4 (DP0) — Informações Técnicas Completas",
+      "modelos_brasil": "Peugeot 307 (2.0 automático), Peugeot 408 (2.0 automático), Peugeot 307 (1.6 em algumas versões)",
+      "fabricante": "AL4 = denominação PSA, DP0 = denominação Renault — MESMA caixa usada em Renault Megane, Laguna, Scénic",
+      "capacidade": "4 marchas + ré, tiptrônico",
+      "torque_maximo": "210 Nm",
+      "componentes_principais": ["Conversor de torque com trava (lock-up)", "Trem planetário (epicicloidal)", "Bloco de controle hidráulico", "UCT — Unidade de Controle da Transmissão (módulo eletrônico)", "Sensor multifunção (CMF) — posição do câmbio"],
+      "fluido": {
+        "especificacao": "Mobil ATF LT71141 (equivalente: FEBI 14738, Esso LT71141, Total Fluide LT71141)",
+        "norma": "DEXRON III-H",
+        "capacidade_troca_parcial": "4.5 litros",
+        "capacidade_total": "6 litros (inclui conversor de torque)"
+      },
+      "reset_contador_desgaste": "Após troca de fluido, o contador eletrônico de desgaste do óleo DEVE ser resetado via scanner Lexia ou Diagbox — caso contrário o sistema continuará calculando intervalo baseado no fluido antigo",
+      "modo_emergencia": {
+        "sintoma": "Luzes SPORT + NEVE piscando simultaneamente, câmbio trava na 3ª marcha",
+        "significado": "Transmissão entrou em modo de proteção por falha detectada — geralmente solenóides com pressão insuficiente",
+        "reset_temporario": "Desligar o veículo completamente, aguardar 30 segundos e religar pode sair do modo de emergência temporariamente"
+      }
+    },
+
+    "thp_guia_geral": {
+      "titulo": "Motor THP 1.6 (EP6) — Guia Completo para Mecânicos no Brasil",
+      "historia": "Motor desenvolvido em parceria PSA (Peugeot-Citroën) e BMW, chamado internamente de 'Príncipe'. BMW usa como N14/N18 nos Mini Cooper S. Injeção direta GDI + VANOS (distribuição variável) + turbo intercooler.",
+      "versoes_brasil": {
+        "EP6_THP150": "150 cv — 208, C3 Aircross — mais propenso a problemas de corrente",
+        "EP6CDT_THP156": "156 cv — sem trocador de calor água/óleo — sensor lambda de banda estreita",
+        "EP6DTS_THP175": "175 cv — turbo maior, escapamento 55mm — RCZ, 308 GTi",
+        "EP6CDTM_THP163": "163 cv — Flex! Primeiro EP6 Flex — 208 GT, 308, 3008 — menos problemas de corrente",
+        "EP6CDTX_THP200": "200 cv — dupla distribuição variável (bi-VANOS) + levantamento variável de válvulas — MUITO menos propenso a problemas de corrente"
+      },
+      "oleo_critico": "PSA B71 2302 (Total Quartz Ineo First 0W-30) para THP Flex brasileiro. NUNCA usar viscosidade superior sem consultar norma PSA via VIN (posições 6-8).",
+      "diagnostico_obd_chave": {
+        "P0011": "Fase da árvore de cames — distribuição variável (VANOS) problema ou corrente esticada",
+        "P0012": "Posição da árvore de cames atrasada — idem",
+        "P0014": "Distribuição variável não responde",
+        "P0300_P0303": "Misfire — verificar velas (especialmente com etanol) e bobinas",
+        "P0420": "Eficiência do catalisador baixa — verificar sonda lambda",
+        "LTFT_positivo_acima_10pct": "Provável perda de sincronismo da corrente — URGENTE"
+      },
+      "sequencia_diagnostico_consumo_oleo": [
+        "1. Confirmar consumo real: completar óleo, anotar km, completar novamente após 1.000 km",
+        "2. Inspecionar visualmente: fumaça azulada no escape, velas oleosas",
+        "3. Teste de compressão (todos os cilindros — normal: 11–13 bar, diferença máxima entre cilindros: 1 bar)",
+        "4. Teste de estanqueidade de cilindros (vazamento pelo cárter = anéis; pelo escapamento = válvulas/retentores)",
+        "5. Inspecionar turbo: verificar folga axial/radial do eixo — se > 0.1mm lateral, trocar turbo",
+        "6. Inspecionar membrana PCV da tampa de válvulas"
+      ]
+    }
+  }
+}

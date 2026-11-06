@@ -1,0 +1,39 @@
+node_modules
+.next
+dist
+.turbo
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+*.env.local
+.vercel
+generated
+
+# SQLite local dev database
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
+.vercel
+
+# Credentials and signing keys
+*.pem
+*.keystore
+*.jks
+*.p12
+credentials.json
+
+# Local scripts, data dumps and editor settings
+query-users.js
+.scratchpad_tmp/
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# Media files
+*.mp4
+*.mp3
+*.gif
+*.mov
+*.avi

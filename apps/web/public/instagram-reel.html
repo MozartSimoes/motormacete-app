@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>MotorMacete — Instagram Reel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #060608;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  /* ── Canvas ── */
+  #canvas {
+    width: 1080px;
+    height: 1920px;
+    position: relative;
+    overflow: hidden;
+    background: #060608;
+  }
+
+  /* ── Grid bg ── */
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,102,0,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,102,0,0.05) 1px, transparent 1px);
+    background-size: 54px 54px;
+    z-index: 0;
+  }
+
+  /* ── Radial glow ── */
+  .glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .glow-top {
+    width: 900px; height: 700px;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse, rgba(255,102,0,0.18) 0%, transparent 65%);
+  }
+  .glow-mid {
+    width: 700px; height: 600px;
+    top: 700px; left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse, rgba(255,102,0,0.10) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+
+  /* ── Scenes ── */
+  .scene {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 72px;
+    opacity: 0;
+    pointer-events: none;
+    will-change: opacity, transform;
+  }
+  .scene.active   { pointer-events: auto; }
+
+  /* ── Animations ── */
+  @keyframes fadeSlideUp   { from { opacity:0; transform: translateY(60px); } to { opacity:1; transform: translateY(0); } }
+  @keyframes fadeSlideDown { from { opacity:0; transform: translateY(-60px); } to { opacity:1; transform: translateY(0); } }
+  @keyframes fadeIn        { from { opacity:0; } to { opacity:1; } }
+  @keyframes fadeOut       { from { opacity:1; } to { opacity:0; } }
+  @keyframes scaleIn       { from { opacity:0; transform: scale(0.8); } to { opacity:1; transform: scale(1); } }
+  @keyframes slideRight    { from { opacity:0; transform: translateX(-80px); } to { opacity:1; transform: translateX(0); } }
+  @keyframes pulseOrange   { 0%,100% { box-shadow: 0 0 0 0 rgba(255,102,0,0.4); } 50% { box-shadow: 0 0 60px 20px rgba(255,102,0,0.2); } }
+  @keyframes barGrow       { from { width: 0; } to { width: var(--w); } }
+  @keyframes countUp       { from { opacity:0; transform: scale(0.5); } to { opacity:1; transform: scale(1); } }
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position:  200% center; }
+  }
+  @keyframes borderPulse {
+    0%,100% { border-color: rgba(255,102,0,0.3); }
+    50%      { border-color: rgba(255,102,0,0.9); }
+  }
+
+  /* ── Common elements ── */
+  .badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #ff6600;
+    border: 1px solid rgba(255,102,0,0.4);
+    padding: 10px 28px;
+    border-radius: 100px;
+    background: rgba(255,102,0,0.08);
+  }
+
+  h1.hero {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 148px;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    color: #f0ede8;
+    text-align: center;
+  }
+  h1.hero span { color: #ff6600; }
+
+  h2.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 96px;
+    line-height: 0.92;
+    letter-spacing: -1px;
+    color: #f0ede8;
+    text-align: center;
+  }
+  h2.section-title span { color: #ff6600; }
+
+  .sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 34px;
+    line-height: 1.5;
+    color: #8a8a9a;
+    text-align: center;
+    max-width: 860px;
+  }
+
+  /* ── Logo lockup ── */
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .logo-icon {
+    width: 80px; height: 80px;
+    background: #ff6600;
+    border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-icon svg { width: 44px; height: 44px; }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .logo-text .m1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .logo-text .m2 { color: #ff9944; }
+  .logo-text .tagline {
+    font-family: 'Barlow', sans-serif;
+    font-size: 22px;
+    color: #666;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  /* ── Feature card ── */
+  .feat-card {
+    width: 100%;
+    border-radius: 28px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: #111115;
+    padding: 48px 52px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .feat-card .icon-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 8px;
+  }
+  .feat-card .icon-box {
+    width: 72px; height: 72px;
+    border-radius: 20px;
+    background: rgba(255,102,0,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 38px;
+    flex-shrink: 0;
+  }
+  .feat-card .feat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #ff6600;
+  }
+  .feat-card .feat-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 58px;
+    color: #f0ede8;
+    line-height: 1;
+  }
+  .feat-card .feat-body {
+    font-size: 30px;
+    color: #777;
+    line-height: 1.55;
+  }
+
+  /* ── Stat pill ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+  }
+  .stat-pill {
+    border-radius: 24px;
+    background: #111115;
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 40px 36px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .stat-pill .val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: #ff6600;
+    line-height: 1;
+  }
+  .stat-pill .lbl {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #444;
+  }
+
+  /* ── Divider line ── */
+  .divider {
+    width: 80px; height: 4px;
+    background: #ff6600;
+    border-radius: 2px;
+  }
+
+  /* ── Orange CTA button ── */
+  .cta-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 4px;
+    color: #060608;
+    background: #ff6600;
+    border-radius: 100px;
+    padding: 30px 80px;
+    text-align: center;
+    animation: pulseOrange 2s ease-in-out infinite;
+  }
+
+  .url-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #ff6600;
+    text-transform: lowercase;
+  }
+
+  /* ── Orange bar accent ── */
+  .accent-bar {
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #ff6600, #ff9944, #ff6600);
+    border-radius: 3px;
+  }
+
+  /* ── Highlight chip ── */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,102,0,0.12);
+    border: 1px solid rgba(255,102,0,0.3);
+    border-radius: 100px;
+    padding: 12px 28px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ff9944;
+  }
+
+  /* ─────────────────────────────────────────
+     SCENE 1 — Abertura / Logo
+  ───────────────────────────────────────── */
+  #s1 .logo-wrap   { margin-bottom: 60px; }
+  #s1 h1.hero      { margin-bottom: 40px; }
+  #s1 .sub         { margin-bottom: 60px; }
+  #s1 .accent-bar  { margin-top: 20px; }
+
+  /* ─────────────────────────────────────────
+     SCENE 2 — Para motoristas
+  ───────────────────────────────────────── */
+  #s2 { gap: 48px; justify-content: center; }
+  #s2 .badge { margin-bottom: 8px; }
+  #s2 h2.section-title { margin-bottom: 8px; }
+  #s2 .sub { font-size: 32px; margin-bottom: 16px; }
+
+  /* ─────────────────────────────────────────
+     SCENE 3 — Funcionalidades motorista
+  ───────────────────────────────────────── */
+  #s3 { gap: 28px; justify-content: center; }
+  #s3 h2.section-title { font-size: 76px; margin-bottom: 4px; }
+
+  /* ─────────────────────────────────────────
+     SCENE 4 — Para mecânicos
+  ───────────────────────────────────────── */
+  #s4 { gap: 48px; justify-content: center; }
+
+  /* ─────────────────────────────────────────
+     SCENE 5 — Stats
+  ───────────────────────────────────────── */
+  #s5 { gap: 48px; justify-content: center; }
+
+  /* ─────────────────────────────────────────
+     SCENE 6 — CTA final
+  ───────────────────────────────────────── */
+  #s6 { gap: 48px; justify-content: center; }
+
+</style>
+</head>
+<body>
+<div id="canvas">
+  <div class="grid-bg"></div>
+  <div class="glow glow-top"></div>
+  <div class="glow glow-mid" id="glowMid"></div>
+
+  <!-- ══ SCENE 1: Abertura ══════════════════════════════════════ -->
+  <div class="scene" id="s1">
+    <div class="logo-wrap">
+      <div class="logo-icon">
+        <svg fill="none" stroke="#fff" viewBox="0 0 24 24" stroke-width="1.5">
+          <circle cx="12" cy="12" r="3"/>
+          <circle cx="12" cy="12" r="8"/>
+          <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2.1 2.1M16.9 16.9l2.1 2.1M19 5l-2.1 2.1M7.1 7.1l-2.1-2.1" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <div class="m1"><span>Motor</span><span class="m2">Macete</span></div>
+        <div class="tagline">Beta · IA Automotiva</div>
+      </div>
+    </div>
+
+    <h1 class="hero">Seu<br>Veículo,<br><span>Sem<br>Segredos.</span></h1>
+
+    <div class="sub">
+      IA treinada em 12 mil ordens de serviço e fóruns de mecânicos. O que só quem trabalha com o seu carro sabe.
+    </div>
+
+    <div class="accent-bar"></div>
+  </div>
+
+  <!-- ══ SCENE 2: Para motoristas ══════════════════════════════ -->
+  <div class="scene" id="s2">
+    <div class="badge">Para Motoristas</div>
+
+    <h2 class="section-title">Você sabe o que<br>está errado com<br><span>o seu carro?</span></h2>
+
+    <div class="sub">
+      Macetes de oficina, problemas crônicos e calendário de manutenção — tudo personalizado para o seu modelo.
+    </div>
+
+    <div style="font-size:120px; line-height:1; text-align:center; filter:drop-shadow(0 0 40px rgba(255,102,0,0.4))">🔧</div>
+  </div>
+
+  <!-- ══ SCENE 3: Funcionalidades motorista ═════════════════════ -->
+  <div class="scene" id="s3">
+    <h2 class="section-title">O que você<br><span>descobre</span></h2>
+
+    <div class="feat-card" id="fc1">
+      <div class="icon-row">
+        <div class="icon-box">⚡</div>
+        <span class="feat-label">Macetes</span>
+      </div>
+      <div class="feat-title">Macetes de Oficina</div>
+      <div class="feat-body">Truques que mecânicos veteranos guardam: qual peça genérica serve, qual óleo usar, como evitar problemas caros.</div>
+    </div>
+
+    <div class="feat-card" id="fc2">
+      <div class="icon-row">
+        <div class="icon-box">🔍</div>
+        <span class="feat-label">Problemas Crônicos</span>
+      </div>
+      <div class="feat-title">Falhas do Seu Modelo</div>
+      <div class="feat-body">Problemas conhecidos por marca, modelo e ano — saiba antes de comprar ou antes de ir à oficina.</div>
+    </div>
+
+    <div class="feat-card" id="fc3">
+      <div class="icon-row">
+        <div class="icon-box">📋</div>
+        <span class="feat-label">Manutenção</span>
+      </div>
+      <div class="feat-title">Calendário Real</div>
+      <div class="feat-body">Intervalos baseados em dados reais — não no manual genérico. Calibragem de pneus inclusa.</div>
+    </div>
+  </div>
+
+  <!-- ══ SCENE 4: Para mecânicos ═══════════════════════════════ -->
+  <div class="scene" id="s4">
+    <div class="badge">Para Mecânicos</div>
+
+    <h2 class="section-title">Cadastre sua<br>oficina e<br><span>seja encontrado</span></h2>
+
+    <div class="sub">
+      Motoristas da sua cidade procurando mecânico qualificado. Você aparece para quem precisa de você.
+    </div>
+
+    <div style="font-size:120px; line-height:1; text-align:center; filter:drop-shadow(0 0 40px rgba(255,102,0,0.4))">🏁</div>
+
+    <div style="display:flex; flex-direction:column; gap:20px; width:100%">
+      <div class="chip">✓ &nbsp;Perfil completo da sua oficina</div>
+      <div class="chip">✓ &nbsp;Especialidades em destaque</div>
+      <div class="chip">✓ &nbsp;Contato direto pelo app</div>
+    </div>
+  </div>
+
+  <!-- ══ SCENE 5: Números ═══════════════════════════════════════ -->
+  <div class="scene" id="s5">
+    <div class="badge">Números reais</div>
+
+    <h2 class="section-title">Uma plataforma<br><span>que cresce</span></h2>
+
+    <div class="stat-row">
+      <div class="stat-pill">
+        <div class="val">12.4K</div>
+        <div class="lbl">Macetes verificados</div>
+      </div>
+      <div class="stat-pill">
+        <div class="val">820</div>
+        <div class="lbl">Modelos cobertos</div>
+      </div>
+      <div class="stat-pill">
+        <div class="val">38K</div>
+        <div class="lbl">Mecânicos cadastrados</div>
+      </div>
+      <div class="stat-pill">
+        <div class="val">4.8★</div>
+        <div class="lbl">Avaliação média</div>
+      </div>
+    </div>
+
+    <div class="sub" style="font-size:30px">
+      Gratuito para motoristas.<br>Sem cartão de crédito.
+    </div>
+  </div>
+
+  <!-- ══ SCENE 6: CTA final ═════════════════════════════════════ -->
+  <div class="scene" id="s6">
+    <div class="logo-wrap">
+      <div class="logo-icon">
+        <svg fill="none" stroke="#fff" viewBox="0 0 24 24" stroke-width="1.5">
+          <circle cx="12" cy="12" r="3"/>
+          <circle cx="12" cy="12" r="8"/>
+          <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2.1 2.1M16.9 16.9l2.1 2.1M19 5l-2.1 2.1M7.1 7.1l-2.1-2.1" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <div class="m1"><span>Motor</span><span class="m2">Macete</span></div>
+        <div class="tagline">Seu veículo, sem segredos.</div>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="font-size:110px">Acesse<br><span>grátis</span><br>agora</h2>
+
+    <div class="cta-btn">Revelar os Macetes →</div>
+
+    <div class="url-text">motormacete.com.br</div>
+
+    <div class="sub" style="font-size:28px; color:#444">
+      Cadastre seu veículo ou sua oficina.<br>É 100% gratuito.
+    </div>
+
+    <div class="accent-bar"></div>
+  </div>
+</div>
+
+<script>
+// ── Timing map: [sceneId, entryMs, durationMs, exitMs]
+const TIMELINE = [
+  { id:'s1', enter:0,     hold:3200,  exit:3800  },
+  { id:'s2', enter:4000,  hold:3200,  exit:7400  },
+  { id:'s3', enter:7600,  hold:5000,  exit:12800 },
+  { id:'s4', enter:13000, hold:4500,  exit:17700 },
+  { id:'s5', enter:17900, hold:3800,  exit:21900 },
+  { id:'s6', enter:22100, hold:6000,  exit:28300 },
+];
+
+// Per-element animation queue: [selector, delayMs, animation, duration]
+const ANIM = {
+  s1: [
+    ['.logo-wrap',  0,    'fadeSlideDown 0.7s cubic-bezier(.22,1,.36,1) forwards'],
+    ['h1.hero',     200,  'fadeSlideUp 0.8s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.sub',        500,  'fadeSlideUp 0.7s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.accent-bar', 800,  'fadeSlideUp 0.6s cubic-bezier(.22,1,.36,1) forwards'],
+  ],
+  s2: [
+    ['.badge',          0,   'scaleIn 0.5s cubic-bezier(.22,1,.36,1) forwards'],
+    ['h2.section-title',200, 'fadeSlideUp 0.8s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.sub',            450, 'fadeSlideUp 0.7s cubic-bezier(.22,1,.36,1) forwards'],
+    ['div[style*="120px"]', 650, 'scaleIn 0.6s cubic-bezier(.22,1,.36,1) forwards'],
+  ],
+  s3: [
+    ['h2.section-title', 0,   'fadeSlideDown 0.6s cubic-bezier(.22,1,.36,1) forwards'],
+    ['#fc1',             150, 'slideRight 0.6s cubic-bezier(.22,1,.36,1) forwards'],
+    ['#fc2',             350, 'slideRight 0.6s cubic-bezier(.22,1,.36,1) forwards'],
+    ['#fc3',             550, 'slideRight 0.6s cubic-bezier(.22,1,.36,1) forwards'],
+  ],
+  s4: [
+    ['.badge',           0,   'scaleIn 0.5s cubic-bezier(.22,1,.36,1) forwards'],
+    ['h2.section-title', 200, 'fadeSlideUp 0.8s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.sub',             400, 'fadeSlideUp 0.7s cubic-bezier(.22,1,.36,1) forwards'],
+    ['div[style*="120px"]', 550, 'scaleIn 0.5s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.chip:nth-child(1)', 700, 'slideRight 0.5s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.chip:nth-child(2)', 900, 'slideRight 0.5s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.chip:nth-child(3)', 1100,'slideRight 0.5s cubic-bezier(.22,1,.36,1) forwards'],
+  ],
+  s5: [
+    ['.badge',          0,    'scaleIn 0.5s cubic-bezier(.22,1,.36,1) forwards'],
+    ['h2.section-title',200,  'fadeSlideUp 0.7s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.stat-pill:nth-child(1)', 350, 'scaleIn 0.55s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.stat-pill:nth-child(2)', 500, 'scaleIn 0.55s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.stat-pill:nth-child(3)', 650, 'scaleIn 0.55s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.stat-pill:nth-child(4)', 800, 'scaleIn 0.55s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.sub',            1000, 'fadeIn 0.6s forwards'],
+  ],
+  s6: [
+    ['.logo-wrap',   0,    'fadeSlideDown 0.7s cubic-bezier(.22,1,.36,1) forwards'],
+    ['h2.section-title', 200, 'fadeSlideUp 0.9s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.cta-btn',     600,  'scaleIn 0.6s cubic-bezier(.22,1,.36,1) forwards'],
+    ['.url-text',    900,  'fadeIn 0.5s forwards'],
+    ['.sub',         1100, 'fadeIn 0.5s forwards'],
+    ['.accent-bar',  1300, 'fadeSlideUp 0.5s forwards'],
+  ],
+};
+
+function resetScene(id) {
+  const scene = document.getElementById(id);
+  scene.style.opacity = '0';
+  scene.style.transition = '';
+  const anims = ANIM[id] || [];
+  anims.forEach(([sel]) => {
+    const el = scene.querySelector(sel);
+    if (el) { el.style.opacity = '0'; el.style.animation = 'none'; }
+  });
+}
+
+function playScene(id, offset) {
+  const scene = document.getElementById(id);
+  scene.classList.add('active');
+  scene.style.opacity = '1';
+
+  const anims = ANIM[id] || [];
+  anims.forEach(([sel, delay, anim]) => {
+    const el = scene.querySelector(sel);
+    if (!el) return;
+    el.style.opacity = '0';
+    el.style.animation = 'none';
+    setTimeout(() => {
+      el.style.animation = anim;
+    }, delay + offset);
+  });
+}
+
+function exitScene(id) {
+  const scene = document.getElementById(id);
+  scene.style.transition = 'opacity 0.4s ease';
+  scene.style.opacity = '0';
+  setTimeout(() => {
+    scene.classList.remove('active');
+  }, 400);
+}
+
+// Reset all
+TIMELINE.forEach(t => resetScene(t.id));
+
+// Schedule
+const START = performance.now();
+
+TIMELINE.forEach(({ id, enter, hold, exit }) => {
+  setTimeout(() => playScene(id, 0), enter);
+  setTimeout(() => exitScene(id), exit);
+});
+
+// mid glow toggle
+setTimeout(() => { document.getElementById('glowMid').style.opacity = '1'; }, 7600);
+setTimeout(() => { document.getElementById('glowMid').style.opacity = '0'; }, 13000);
+setTimeout(() => { document.getElementById('glowMid').style.opacity = '1'; }, 22100);
+
+// Total duration indicator
+const TOTAL = 29000;
+setTimeout(() => {
+  document.getElementById('canvas').style.opacity = '0';
+  document.getElementById('canvas').style.transition = 'opacity 0.5s';
+}, TOTAL);
+
+// Restart after 1s pause
+setTimeout(() => {
+  TIMELINE.forEach(t => resetScene(t.id));
+  document.getElementById('canvas').style.opacity = '1';
+  document.getElementById('canvas').style.transition = 'opacity 0.3s';
+  setTimeout(() => {
+    TIMELINE.forEach(({ id, enter, hold, exit }) => {
+      setTimeout(() => playScene(id, 0), enter);
+      setTimeout(() => exitScene(id), exit);
+    });
+    setTimeout(() => { document.getElementById('glowMid').style.opacity = '1'; }, 7600);
+    setTimeout(() => { document.getElementById('glowMid').style.opacity = '0'; }, 13000);
+    setTimeout(() => { document.getElementById('glowMid').style.opacity = '1'; }, 22100);
+    setTimeout(() => {
+      document.getElementById('canvas').style.opacity = '0';
+      document.getElementById('canvas').style.transition = 'opacity 0.5s';
+    }, TOTAL);
+  }, 300);
+}, TOTAL + 1200);
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "name": "@motormacete/mobile",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./index.js",
+  "scripts": {
+    "dev": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "build": "expo export",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@react-native-community/datetimepicker": "8.4.1",
+    "@react-navigation/bottom-tabs": "^7.2.0",
+    "@react-navigation/drawer": "^7.10.2",
+    "expo": "~53.0.0",
+    "expo-constants": "~17.1.8",
+    "expo-file-system": "^18.1.11",
+    "expo-font": "~13.3.1",
+    "expo-linking": "~7.1.7",
+    "expo-notifications": "~0.31.5",
+    "expo-router": "~5.1.11",
+    "expo-secure-store": "~14.2.4",
+    "expo-sharing": "^13.1.5",
+    "expo-status-bar": "~2.2.3",
+    "react": "19.0.0",
+    "react-native": "0.79.6",
+    "react-native-chart-kit": "^6.12.3",
+    "react-native-gesture-handler": "~2.24.0",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.11.1",
+    "react-native-svg": "^15.11.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.0",
+    "@types/react": "~19.0.10",
+    "typescript": "^5.8.3"
+  }
+}

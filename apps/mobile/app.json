@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "MotorMacete",
+    "slug": "motormacete",
+    "version": "1.0.0",
+    "scheme": "motormacete",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0e0e0f",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0e0e0f"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.motormacete.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#111111"
+      },
+      "package": "com.motormacete.app",
+      "newArchEnabled": false,
+      "softwareKeyboardLayoutMode": "resize"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#ff6600",
+          "sounds": []
+        }
+      ],
+      "@react-native-community/datetimepicker"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "ed86c1f9-04ed-4dfd-bb43-e376192b4fc5"
+      }
+    },
+    "owner": "mozartsimoes"
+  }
+}

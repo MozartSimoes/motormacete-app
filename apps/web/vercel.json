@@ -1,0 +1,28 @@
+{
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm build",
+  "framework": "nextjs",
+  "outputDirectory": ".next",
+  "crons": [
+    {
+      "path": "/api/alerts/maintenance",
+      "schedule": "0 11 * * *"
+    },
+    {
+      "path": "/api/alerts/clients",
+      "schedule": "0 11 * * *"
+    },
+    {
+      "path": "/api/alerts/news",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/alerts/taxes",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/alerts/neon-usage",
+      "schedule": "0 12 * * *"
+    }
+  ]
+}
